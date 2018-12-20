@@ -1,0 +1,28 @@
+挂载网络文件：
+ mount -t nfs -o nolock 192.168.1.103:/home/fish/work/dev_src  /mnt
+
+
+
+
+32位CPU，内部总线32bits
+        内部寄存器32bits
+
+实模式：类似于16位CPU的段式管理单元，寻址能力弱，1M
+保护模式：大多数时间使用这个保护模式，采用页式管理机制
+
+linux始终认为基地址的值为0,    逻辑地址=虚拟地址
+充分使用类页式管理，4级页表
+linux内存的最小管理单元：页（4kb）
+        --------struct page
+
+内核中内存的分配：
+用户空间：
+        malloc/free
+        new/delete
+        valloc
+内核空间：
+        kmalloc/kfree
+        vmalloc/vfree(申请到的物理地址空间可能不连续)
+        _get_free_pages/free_page
+
+

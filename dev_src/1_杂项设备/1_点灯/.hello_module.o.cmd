@@ -1,0 +1,1 @@
+cmd_/home/fish/linux_dev_dp/dev_src/0_simpleModule/1_hello-word/hello_module.o := arm-linux-ld -EL    -r -o /home/fish/linux_dev_dp/dev_src/0_simpleModule/1_hello-word/hello_module.o /home/fish/linux_dev_dp/dev_src/0_simpleModule/1_hello-word/hello.o /home/fish/linux_dev_dp/dev_src/0_simpleModule/1_hello-word/show.o 

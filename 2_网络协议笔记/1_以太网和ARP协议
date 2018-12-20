@@ -1,0 +1,8 @@
+MAC地址：物理地址，全球唯一
+IP地址:通过IP地址找MAC地址，动态变换的。
+ARP协议:构造ARP协议包，帮助识别MAC地址。
+前６个字节(目的地址MAC) FF:FF:FF:FF:FF:FF ＋　源MAC　＋　：
+
+
+    
+        

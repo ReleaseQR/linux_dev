@@ -1,0 +1,1 @@
+cmd_/home/fish/work/dev_src/5_platformBus/device/platform.ko := arm-linux-ld -EL -r  -T /home/fish/linux_kernel/kernel/linux-3.5/scripts/module-common.lds --build-id  -o /home/fish/work/dev_src/5_platformBus/device/platform.ko /home/fish/work/dev_src/5_platformBus/device/platform.o /home/fish/work/dev_src/5_platformBus/device/platform.mod.o

@@ -1,0 +1,1 @@
+cmd_/home/fish/linux_dev_dp/dev_src/3_list/list.ko := arm-linux-ld -EL -r  -T /home/fish/linux_dev_dp/kernel/linux-3.5/scripts/module-common.lds --build-id  -o /home/fish/linux_dev_dp/dev_src/3_list/list.ko /home/fish/linux_dev_dp/dev_src/3_list/list.o /home/fish/linux_dev_dp/dev_src/3_list/list.mod.o

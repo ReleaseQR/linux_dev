@@ -1,0 +1,2 @@
+/home/fish/linux_dev_dp/dev_src/2_chardevice/0_自动分配设备号/chardev.ko
+/home/fish/linux_dev_dp/dev_src/2_chardevice/0_自动分配设备号/chardev.o

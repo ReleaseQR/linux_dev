@@ -1,0 +1,22 @@
+将摄像头直接连接到PC机的usb口，会在虚拟机linux下有检测到摄像头的提示，表示摄像头可以使用，然后make，./show 就可以运行完毕
+
+ 
+
+四、对上述show.c 程序的说明
+
+网上很多程序会把上述相关数据结构整合到一个自定义的数据结构中，我认为没有必要，因为核心是通过mmap映射后的指针，所以相关数据结构只需要函数中局部变量就行，没必要整成全局变量，而buffers则需要全局变量，便于使用。
+
+show.c源程序中最重要的是buffers指针，在init_mmap()函数中，首先 通过buffers = calloc(req.count,sizeof(*buffers)); 使它指向count个内存空间，然后通过 
+
+buffers[n_buffers].length = buf.length;   //设置映射方式为mmap   
+buffers[n_buffers].start = mmap(NULL,buf.length,PROT_READ | PROT_WRITE,MAP_SHARED,fd,buf.m.offset); 
+
+length的大小是640*480*2个字节，即一副图像大小。
+
+将buffers和驱动层的缓存通过mmap联系起来，将驱动层的缓存映射到应用层。
+
+最后通过read_frame()函数将buffers指向的地址数据写道fp中，fp指向"test.yuyv"
+
+ 
+
+程序运行后会得到一个test.yuyv文件，通过samba服务器从虚拟机拷贝到Windows，用YUVViewer.exe软件打开，设置一下格式为YUYV，640X480然后play即可。

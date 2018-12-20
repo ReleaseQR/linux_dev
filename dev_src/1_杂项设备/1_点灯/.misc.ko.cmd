@@ -1,0 +1,1 @@
+cmd_/home/fish/linux_dev_dp/dev_src/1_杂项设备/1_点灯/misc.ko := arm-linux-ld -EL -r  -T /home/fish/linux_dev_dp/kernel/linux-3.5/scripts/module-common.lds --build-id  -o /home/fish/linux_dev_dp/dev_src/1_杂项设备/1_点灯/misc.ko /home/fish/linux_dev_dp/dev_src/1_杂项设备/1_点灯/misc.o /home/fish/linux_dev_dp/dev_src/1_杂项设备/1_点灯/misc.mod.o

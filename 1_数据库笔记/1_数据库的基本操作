@@ -1,0 +1,167 @@
+创建库时指定字符集：
+    create database xxxxx character set utf8;
+修改创建的数据库的字符集:
+    alter database xxxx character set utf8;
+查看数据库的创建基本信息：
+    show create database xxxxx;
+删除数据库：
+    drop database xxxxx;
+删除表：
+    drop table xxxx;
+
+显示数据库中的表：
+    show tables;
+
+显示表中的所有东西：
+    select * from xxxxx;
+
+选定库:
+    use xxxx;
+
+创建一个表：
+create table t1(
+    id int,mZ
+    chinese int,
+    english int,
+    math int
+);
+
+创建表时添加注释属性：
+create table 表名(
+    id int comment '属性',
+    ....,
+    ....
+);
+注意的是comment在类型之后
+
+插入表中数据：
+    insert into 表名(字段１,字段２,...) values(值１,值２,...)
+
+同时表中插入多条数据：
+    insert into 表名(字段１,字段２..) values (值１,值２,...),(值１,值２,....)
+
+删除表中的数据：
+    delete from 表名 where 条件;
+
+
++++++++++++++++++++++++关系运算符++++++++++++++++++++++++++++++++++
+在mysql中常用关系运算符有:=,>,>=,<,<=,!=
+关系运算符需要放在where关键字之后
+
+查询的语法规则：
+    select 字段１,字段２, from 表名　[where 条件];
+
++++++++++++++++++++++++逻辑运算符+++++++++++++++++++++++++++++++++++
+常见的逻辑运算有：与(and),或(or),非(not)
+    select * from 表名 where 条件1 and 条件2;
+
+
+查询时给表取别名：
+    select 别名.id, 别名.name from 表名　别名;
+
+
+对表的改(updata):
+修改语法：
+    update 表名 set 字段名1=值1, 字段名2=值2 where 条件;
+
+删除表中的所有数据：
+    delete from 表名 where 1=1;
+删除整个表：
+    1：truncate table 表名;
+    如果字段是自增的，删除后重新计数
+    2：delete from 表名 where 1=1;
+    删除整个表后，如果字段是自增的，则将会在原来的基础上继续增加
+    
+
+sql语句分类
+数据库查询语言(DQL):对表的查询语句，select
+数据库定义语言(DDL):create database, create table, drop database, drop table
+数据库操作语言(DML):update. insert, delete
+
+DDL操作数据库：
+    create database 库名 [character set utf8];
+    drop database 库名;
+查询指定的库的详细信息：
+    1----show create dateabase 库名;
+    2----show databases; 查询mysql软件下所有的数据库
+    3----查看当前用户链接的是哪个数据库
+        select database();
+创建一张表：
+    create table 表名(字段1 类型, 字段2 类型,....);
+删除一张表：
+    drop table 表名;
+查看表结构：
+    1----desc 表名;
+    2----打印一张表的创建信息：show create table 表名;
+
+修改表：
+    1----修改表（已经存在的表）的名字，重命名：
+        rename table 旧表名 to 新表名;
+    2----插入新的字段（往已经存在的表中添加）
+        alter table 表名 add 字段名 数据类型;
+    3----删除一张表中的字段
+        alter table 表名 drop 被删除的字段名;
+    4----对表中的一个字段重命名
+        alter table 表名 change 旧字段名 新字段名 新字段名数据类型;
+    5----修改一个字段的数据类型长度
+        alter table 表名 change 旧字段名 新字段名 新字段名数据类型;
+    6----往表中添加一个日期字段
+        alter table 表名 add 字段名 date;
+        update 表名 set 字段名='1993-7-7' where id=3;
+        注意：
+        alter table 表名 change 旧字段名 新字段名 datetime;
+                                                --datetime:年月日时分秒
+
+
++++++++++++++++++对数据库的备份与还原+++++++++++++++++++++++++++++++++++++
+1：通过命令---
+    备份数据库:[不需要进入mysql环境下]
+    mysqldump -uroot -p密码 需要备份的数据库名>路径/备份后的sql脚本名;
+    还原数据库：
+    首先进入mysql环境下---->创建一个数据库------>在库下还原数据
+    source 备份的数据库脚本
+
+
+++++++++++++++++++++数据类型的属性+++++++++++++++++++++++++++++++++++++++++
+常见的数据类型：varchar(n), float, int(n), bigint(n), date, datetime, text
+    text:文本类型(占资源，比较大)
+
+1：默认值
+create table 表名(
+    id int(20) default '0' comment '学生编号',
+    ....,
+    .....
+);
+    ---default:后面接的是默认值，并且在comment之前
+----------------------------------------------------------------------------2：非空 not null
+    如果某一个字段被not null修辞后，添加数据时必须填写
+-----------------------------------------------------------------------------
+3：主键---primary key
+create table 表名(
+    id int(20) auto_increment primary key comment '学生编号',
+    ....,
+    .....
+);
+auto_increment :自动增长，
+primary key:唯一的，不可以更改的
+注意：当某一个id被删除后，再次添加时，会在被删除的id号字后添加新的id号
+ 如：
+ 删除id = 3;
+ 再次添加时id将会等于4；
+一张表中只有一个字段可以作为主键
+truncate table 表名;---删除整个表
+-----------------------------------------------------------------------------
+4：唯一值 unique 
+被unique修辞的数据不能够重复
+create table 表名(
+    id int(20) auto_increment primary key comment '学生编号',
+    phone varchar(20) unique comment '手机号'
+    .....
+);
+
+********************************排序*************************************××××
+order by:
+    升序----
+    select * from 表名 order by 字段名 asc;
+    降序-----
+    selcet * from 表明 order by 字段名 desc;
